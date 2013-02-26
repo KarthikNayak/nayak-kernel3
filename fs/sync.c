@@ -18,6 +18,9 @@
 #include <linux/backing-dev.h>
 #include "internal.h"
 
+bool fsync_enabled = false;
+module_param(fsync_enabled, bool, 0755);
+
 #define VALID_FLAGS (SYNC_FILE_RANGE_WAIT_BEFORE|SYNC_FILE_RANGE_WRITE| \
 			SYNC_FILE_RANGE_WAIT_AFTER)
 
@@ -138,6 +141,9 @@ SYSCALL_DEFINE1(syncfs, int, fd)
 	struct super_block *sb;
 	int ret;
 	int fput_needed;
+	
+	if (!fsync_enabled)
+	  return 0;
 
 	file = fget_light(fd, &fput_needed);
 	if (!file)
@@ -165,6 +171,9 @@ SYSCALL_DEFINE1(syncfs, int, fd)
  */
 int vfs_fsync_range(struct file *file, loff_t start, loff_t end, int datasync)
 {
+	if (!fsync_enabled)
+	  return 0;
+
 	struct address_space *mapping = file->f_mapping;
 	int err, ret;
 
