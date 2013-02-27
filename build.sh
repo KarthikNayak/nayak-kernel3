@@ -21,28 +21,17 @@ echo "5) p509"
 read -p "1/2/3/4/5: " choice
 case "$choice" in
 1 ) export target=p350 ; export defconfig=cyanogenmod_p350_defconfig;;
-2 ) export target=p500 ; export defconfig=cyanogenmod_p500_p509_defconfig;;
-3 ) export target=p505 ; export defconfig=cyanogenmod_p505_p506_defconfig;;
-4 ) export target=p506 ; export defconfig=cyanogenmod_p505_p506_defconfig;;
-5 ) export target=p509 ; export defconfig=cyanogenmod_p500_p509_defconfig;;
+2 ) export target=p500 ; export defconfig=nk1_defconfig;;
+3 ) export target=p505 ; export defconfig=nk2_defconfig;;
+4 ) export target=p506 ; export defconfig=nk2_defconfig;;
+5 ) export target=p509 ; export defconfig=nk1_defconfig;;
 * ) echo "invalid choice"; sleep 2 ; ./build.sh;;
 esac
 fi # [ -z $target ]
 
-if [ -z $compiler ]; then
-if [ -f ../arm-eabi-4.6/bin/arm-eabi-* ]; then
-export compiler=../arm-eabi-4.6/bin/arm-eabi-
-elif [ -f arm-eabi-4.6/bin/arm-eabi-* ]; then # [ -f ../arm-eabi-4.6/bin/arm-eabi-* ]
-export compiler=arm-eabi-4.6/bin/arm-eabi-
-else # [ -f arm-eabi-4.6/bin/arm-eabi-* ]
-echo "please specify a location, including the '/bin/arm-eabi-' at the end "
-read compiler
-fi # [ -z $compiler ]
-fi # [ -f ../arm-eabi-4.6/bin/arm-eabi-* ]
-
 cd $location
 export ARCH=arm
-export CROSS_COMPILE=$compiler
+export CROSS_COMPILE=/development/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
 if [ -z "$clean" ]; then
 read -p "do make clean mrproper?(y/n)" clean
 fi # [ -z "$clean" ]
