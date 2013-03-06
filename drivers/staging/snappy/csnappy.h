@@ -2,7 +2,7 @@
 #define __CSNAPPY_H__
 /*
 File modified for the Linux Kernel by
-Zeev Tarantov <zeev.tarantov at gmail.com>
+Zeev Tarantov <zeev.tarantov <at> gmail.com>
 */
 #ifdef __cplusplus
 extern "C" {
