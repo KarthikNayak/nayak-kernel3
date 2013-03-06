@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Various stubs for the open-source version of Snappy.
 
 File modified for the Linux Kernel by
-Zeev Tarantov <zeev.tarantov at gmail.com>
+Zeev Tarantov <zeev.tarantov <at> gmail.com>
 */
 
 #ifndef CSNAPPY_INTERNAL_H_
