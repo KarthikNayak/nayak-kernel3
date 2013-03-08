@@ -31,7 +31,7 @@ fi # [ -z $target ]
 
 cd $location
 export ARCH=arm
-export CROSS_COMPILE=/development/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
+export CROSS_COMPILE=../toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
 if [ -z "$clean" ]; then
 read -p "do make clean mrproper?(y/n)" clean
 fi # [ -z "$clean" ]
@@ -44,6 +44,7 @@ esac
 echo "now building the kernel"
 
 make $defconfig
+make menuconfig
 make -j `cat /proc/cpuinfo | grep "^processor" | wc -l` "$@"
 
 ## the zip creation
