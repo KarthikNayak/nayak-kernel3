@@ -2,7 +2,7 @@
  * MSM architecture clock driver
  *
  * Copyright (C) 2007 Google, Inc.
- * Copyright (c) 2007-2012, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2007-2012, Code Aurora Forum. All rights reserved.
  * Author: San Mehat <san@android.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -137,18 +137,18 @@ static struct clkctl_acpu_speed pll0_960_pll1_245_pll2_1200_pll4_0[] = {
 	{ 1, 480000, ACPU_PLL_0, 4, 1, 160000, 2, 6, 160000 },
 	{ 1, 600000, ACPU_PLL_2, 2, 1, 200000, 2, 7, 200000 },
 #ifdef CONFIG_MSM7X27_OVERCLOCK
-        { 1, 652800, ACPU_PLL_0, 4, 0, 217600, 2, 7, 200000 },
-        { 1, 672000, ACPU_PLL_0, 4, 0, 224000, 2, 7, 200000 },
-        { 1, 691200, ACPU_PLL_0, 4, 0, 230400, 2, 7, 200000 },
-        { 1, 710400, ACPU_PLL_0, 4, 0, 236800, 2, 7, 200000 },
-        { 1, 729600, ACPU_PLL_0, 4, 0, 243200, 2, 7, 200000 },
-        { 1, 748800, ACPU_PLL_0, 4, 0, 249600, 2, 7, 200000 },
-        { 1, 768000, ACPU_PLL_0, 4, 0, 256000, 2, 7, 200000 },
-        { 1, 787200, ACPU_PLL_0, 4, 0, 262400, 2, 7, 200000 },
-        { 1, 806400, ACPU_PLL_0, 4, 0, 268800, 2, 7, 200000 },
-        { 1, 825600, ACPU_PLL_0, 4, 0, 275200, 2, 7, 200000 },
-        { 1, 844800, ACPU_PLL_0, 4, 0, 281600, 2, 7, 200000 },
-        { 1, 864000, ACPU_PLL_0, 4, 1, 216000, 3, 7, 216000 },
+	{ 1, 652800, ACPU_PLL_0, 4, 1, 163200, 3, 7, 192000 },
+	{ 1, 691200, ACPU_PLL_0, 4, 1, 172800, 3, 7, 192000 },
+	{ 1, 729600, ACPU_PLL_0, 4, 1, 182400, 3, 7, 192000 },
+	{ 1, 748800, ACPU_PLL_0, 4, 1, 187200, 3, 7, 192000 },
+	{ 1, 768000, ACPU_PLL_0, 4, 1, 192000, 3, 7, 192000 },
+	{ 1, 787200, ACPU_PLL_0, 4, 1, 196800, 3, 7, 196800 },
+#ifdef CONFIG_MSM7X27T_OVERCLOCK
+	{ 1, 806400, ACPU_PLL_0, 4, 1, 201600, 3, 7, 201600 },
+	{ 1, 825600, ACPU_PLL_0, 4, 1, 206400, 3, 7, 206400 },
+	{ 1, 844800, ACPU_PLL_0, 4, 1, 211200, 3, 7, 211200 },
+	{ 1, 864000, ACPU_PLL_0, 4, 1, 216000, 3, 7, 216000 },
+#endif
 #endif
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0} }
 };
@@ -164,20 +164,6 @@ static struct clkctl_acpu_speed pll0_960_pll1_196_pll2_1200_pll4_0[] = {
 	{ 0, 400000, ACPU_PLL_2, 2, 2, 133333, 2, 5, 160000 },
 	{ 1, 480000, ACPU_PLL_0, 4, 1, 160000, 2, 6, 160000 },
 	{ 1, 600000, ACPU_PLL_2, 2, 1, 200000, 2, 7, 200000 },
-#ifdef CONFIG_MSM7X27_OVERCLOCK
-	{ 1, 652800, ACPU_PLL_0, 4, 0, 217600, 2, 7, 200000 },
-	{ 1, 672000, ACPU_PLL_0, 4, 0, 224000, 2, 7, 200000 },
-	{ 1, 691200, ACPU_PLL_0, 4, 0, 230400, 2, 7, 200000 },
-	{ 1, 710400, ACPU_PLL_0, 4, 0, 236800, 2, 7, 200000 },
-	{ 1, 729600, ACPU_PLL_0, 4, 0, 243200, 2, 7, 200000 },
-	{ 1, 748800, ACPU_PLL_0, 4, 0, 249600, 2, 7, 200000 },
-	{ 1, 768000, ACPU_PLL_0, 4, 0, 256000, 2, 7, 200000 },
-	{ 1, 787200, ACPU_PLL_0, 4, 0, 262400, 2, 7, 200000 },
-	{ 1, 806400, ACPU_PLL_0, 4, 0, 268800, 2, 7, 200000 },
-	{ 1, 825600, ACPU_PLL_0, 4, 0, 275200, 2, 7, 200000 },
-	{ 1, 844800, ACPU_PLL_0, 4, 0, 281600, 2, 7, 200000 },
-	{ 1, 864000, ACPU_PLL_0, 4, 1, 216000, 3, 7, 216000 },
-#endif
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0} }
 };
 
@@ -499,7 +485,7 @@ static int acpuclk_set_vdd_level(int vdd)
 	       current_vdd, vdd);
 
 	writel_relaxed((1 << 7) | (vdd << 3), A11S_VDD_SVS_PLEVEL_ADDR);
-	//mb();
+	mb();
 	udelay(62);
 	if ((readl_relaxed(A11S_VDD_SVS_PLEVEL_ADDR) & 0x7) != vdd) {
 		pr_err("VDD set failed\n");
@@ -515,29 +501,27 @@ static int acpuclk_set_vdd_level(int vdd)
 static void acpuclk_set_div(const struct clkctl_acpu_speed *hunt_s)
 {
 	uint32_t reg_clkctl, reg_clksel, clk_div, src_sel;
+#ifdef CONFIG_MSM7X27_OVERCLOCK
+	uint32_t a11_div;
+#endif
 
 	reg_clksel = readl_relaxed(A11S_CLK_SEL_ADDR);
 
 	/* AHB_CLK_DIV */
 	clk_div = (reg_clksel >> 1) & 0x03;
+#ifdef CONFIG_MSM7X27_OVERCLOCK
+	a11_div = hunt_s->a11clk_src_div;
+#ifdef CONFIG_MSM7X27T_OVERCLOCK
+	if (hunt_s->a11clk_khz > 800000) {
+#else
+	if (hunt_s->a11clk_khz > 600000) {
+#endif
+		a11_div = 0;
+		writel_relaxed(hunt_s->a11clk_khz/19200, PLLn_L_VAL(0));
+	}
+#endif /* CONFIG_MSM7X27_OVERCLOCK */
 	/* CLK_SEL_SRC1NO */
 	src_sel = reg_clksel & 1;
-
-	// Perform overclocking if requested
-	if(hunt_s->pll==0 && hunt_s->a11clk_khz>600000) {
-		// Change the speed of PLL0
-		writel(hunt_s->a11clk_khz/19200, PLLn_L_VAL(0));
-		//cpu_relax();
-		udelay(50);
-	}
-
-#ifdef CONFIG_MSM7X27_OVERCLOCK
-	// Pump the PLL2 up another 19200kHz (overclock stock 600MHz from 595.2MHz to 604.8MHz)
-	if(hunt_s->pll==2 && hunt_s->a11clk_khz==600000) {
-		writel(63, PLLn_L_VAL(2));
-		udelay(50);
-	}
-#endif
 
 	/*
 	 * If the new clock divider is higher than the previous, then
@@ -553,12 +537,29 @@ static void acpuclk_set_div(const struct clkctl_acpu_speed *hunt_s)
 	reg_clkctl = readl_relaxed(A11S_CLK_CNTL_ADDR);
 	reg_clkctl &= ~(0xFF << (8 * src_sel));
 	reg_clkctl |= hunt_s->a11clk_src_sel << (4 + 8 * src_sel);
+#ifdef CONFIG_MSM7X27_OVERCLOCK
+	reg_clkctl |= a11_div << (0 + 8 * src_sel);
+#else
 	reg_clkctl |= hunt_s->a11clk_src_div << (0 + 8 * src_sel);
+#endif
 	writel_relaxed(reg_clkctl, A11S_CLK_CNTL_ADDR);
 
 	/* Program clock source selection */
 	reg_clksel ^= 1;
 	writel_relaxed(reg_clksel, A11S_CLK_SEL_ADDR);
+
+#ifdef CONFIG_MSM7X27_OVERCLOCK
+#ifdef CONFIG_MSM7X27T_OVERCLOCK
+	if (hunt_s->pll == ACPU_PLL_0 && hunt_s->a11clk_khz <= 800000) {
+#else
+	if (hunt_s->pll == ACPU_PLL_0 && hunt_s->a11clk_khz <= 600000) {
+#endif
+		if ((readl_relaxed(PLLn_L_VAL(0)) & 0x3f) != PLL_960_MHZ) {
+			/* Restore PLL0 to standard config */
+			writel_relaxed(PLL_960_MHZ, PLLn_L_VAL(0));
+		}
+        }
+#endif /* CONFIG_MSM7X27_OVERCLOCK */
 
 	/*
 	 * If the new clock divider is lower than the previous, then
@@ -703,7 +704,7 @@ static int acpuclk_7627_set_rate(int cpu, unsigned long rate,
 		drv_state.current_speed = cur_s;
 		/* Re-adjust lpj for the new clock speed. */
 		loops_per_jiffy = cur_s->lpj;
-		//mb();
+		mb();
 		udelay(50);
 	}
 
