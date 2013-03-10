@@ -6,8 +6,6 @@
 
 echo "this is an open source script, feel free to use and share it"
 
-daytime=$(date +%d"-"%m"-"%Y"_"%H"-"%M)
-
 location=.
 vendor=lge
 
@@ -63,13 +61,14 @@ cp arch/arm/boot/zImage zip-creator/kernel
 
 find . -name *.ko | xargs cp -a --target-directory=zip-creator/system/lib/modules/
 
-zipfile="lge-3.0.x-$target-$daytime.zip"
+zipfile="Nayak-Kernel-$target.zip"
 cd zip-creator
 rm -f *.zip
 zip -r $zipfile * -x *kernel/.gitignore*
 
 echo "zip saved to zip-creator/$zipfile"
-
+mv $zipfile ~/development/android/Kernel/
+echo "Moved the file to Kernel"
 else # [ -f arch/arm/boot/zImage ]
 echo "the build failed so a zip won't be created"
 fi # [ -f arch/arm/boot/zImage ]
