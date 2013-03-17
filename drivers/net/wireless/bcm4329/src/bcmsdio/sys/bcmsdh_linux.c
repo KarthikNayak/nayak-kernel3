@@ -636,7 +636,15 @@ int bcmsdh_register_oob_intr(void * dhdp)
 		if (error)
 			return -ENODEV;
 
+<<<<<<< HEAD
 		enable_irq_wake(sdhcinfo->oob_irq);
+=======
+	/* Refer to customer Host IRQ docs about proper irqflags definition */
+	error = request_irq(sdhcinfo->oob_irq, wlan_oob_irq, sdhcinfo->oob_flags,
+		"bcmsdh_sdmmc", NULL);
+
+	irq_set_irq_wake(sdhcinfo->oob_irq, 1);
+>>>>>>> 291b757... set_irq_ has been changed to irq_set_irq_ now
 		sdhcinfo->oob_irq_registered = TRUE;
 	}
 
@@ -661,8 +669,13 @@ void bcmsdh_unregister_oob_intr(void)
 {
 	SDLX_MSG(("%s: Enter\n", __FUNCTION__));
 
+<<<<<<< HEAD
 	if (sdhcinfo->oob_irq_registered) {
 		disable_irq_wake(sdhcinfo->oob_irq);
+=======
+	if (sdhcinfo->oob_irq_registered == TRUE) {
+		irq_set_irq_wake(sdhcinfo->oob_irq, 0);
+>>>>>>> 291b757... set_irq_ has been changed to irq_set_irq_ now
 		disable_irq(sdhcinfo->oob_irq);	/* just in case.. */
 		free_irq(sdhcinfo->oob_irq, NULL);
 		sdhcinfo->oob_irq_registered = FALSE;
