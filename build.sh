@@ -31,7 +31,7 @@ fi # [ -z $target ]
 
 cd $location
 export ARCH=arm
-export CROSS_COMPILE=../toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
+export CROSS_COMPILE=../toolchains/linux-arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
 if [ -z "$clean" ]; then
 read -p "do make clean mrproper?(y/n)" clean
 fi # [ -z "$clean" ]
