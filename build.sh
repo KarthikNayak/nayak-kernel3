@@ -12,6 +12,7 @@ location=.
 vendor=lge
 
 if [ -z $target ]; then
+read -p "What is the Version No? " version
 echo "choose your target device"
 echo "1) p350"
 echo "2) p500"
@@ -63,7 +64,7 @@ cp arch/arm/boot/zImage zip-creator/kernel
 
 find . -name *.ko | xargs cp -a --target-directory=zip-creator/system/lib/modules/
 
-zipfile="Nayak-Kernel-$target.zip"
+zipfile="Nayak-Kernel-$target-v$version.zip"
 cd zip-creator
 rm -f *.zip
 zip -r $zipfile * -x *kernel/.gitignore*
