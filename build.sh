@@ -39,7 +39,7 @@ fi # [ -z "$clean" ]
 case "$clean" in
 y|Y ) echo "cleaning..."; make clean mrproper;;
 n|N ) echo "continuing...";;
-* ) echo "invalid option"; sleep 2 ; build.sh;;
+* ) echo "invalid option"; sleep 2 ; ./build.sh;;
 esac
 
 echo "now building the kernel"
