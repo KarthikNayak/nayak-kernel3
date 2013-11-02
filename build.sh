@@ -32,7 +32,17 @@ fi # [ -z $target ]
 
 cd $location
 export ARCH=arm
-export CROSS_COMPILE=../toolchains/linux-arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
+echo "Choose ToolChain"
+echo "1) arm-eabi-4.4.3"
+echo "2) arm-eabi-linaro-4.6.2"
+echo "3) arm-linux-androideabi-4.7"
+read -p "1/2/3:" Toolc
+case "$Toolc" in
+1 ) export CROSS_COMPILE=~/android/toolchains/arm-eabi-4.4.3/bin/arm-eabi-;;
+2 ) export CROSS_COMPILE=~/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-;;
+3 ) export CROSS_COMPILE=~/android/toolchains/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-;;
+* ) echo "wrong choice using arm-linux by default"; export CROSS_COMPILE=~/android/toolchain/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-;;
+esac
 if [ -z "$clean" ]; then
 read -p "do make clean mrproper?(y/n)" clean
 fi # [ -z "$clean" ]
